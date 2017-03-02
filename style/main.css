@@ -1,0 +1,17 @@
+body{
+	font-family: "Helvetica Neue",Helvetica,Arial,Sans-serif;
+	font-size: 40px/80px;
+	Styles: Normal/Bold;
+	background-color: #2bbed3;
+}
+
+h1{
+	text-align: center;
+	font-size: 80px;
+	color: white;
+}
+
+#centeredDiv{
+	margin: 0 auto;
+	width: 100px;
+}
