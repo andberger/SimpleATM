@@ -14,6 +14,10 @@ $("#numberpad").on("click", "li", function(event){
 
 	updateAmount(pushedButton.innerText);
 });
+$("#submitButton").on("click", function(){
+	let amount = getAmount();
+	$("#amount").text("\u00A3 " + amount);
+});
 
 function updateAmount(num){
 	let maxLength = 6;
@@ -46,4 +50,9 @@ function buttonAbler(enableOrNo){
 		$("#submitButton").prop("disabled", true);
 		$("#submitButton").css("opacity", "0.5");
 	}
+}
+
+function getAmount(){
+	let amount = $("#amountField").val();
+	return Number(amount.slice(2));
 }

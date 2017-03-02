@@ -71,3 +71,15 @@ button:focus{
 	height: 45px;
 	margin: 5px;
 }
+
+#withdrawalInterface{
+	width: 250px;
+	height: auto;
+    margin: 0 auto;
+}
+
+#amount{
+	text-align: center;
+	font-size: 40px;
+	color: white;
+}

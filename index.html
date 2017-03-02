@@ -9,10 +9,10 @@
  </head>
 
  <body>
-	 <div id="centeredDiv">
-	 	<h1>Enalyzer <br/> ATM</h1>
-		<h3>Select amount</h3>
+	<div id="centeredDiv">
+		<h1>Enalyzer <br/> ATM</h1>
 		<div id="atmInterface">
+			<h3>Select amount</h3>
 			<input id="amountField" type="text" name="amount" onblur="this.focus()" autofocus>
 			<ul id="numberpad">
 				<li>1</li>
@@ -30,10 +30,14 @@
 			<div class="clear"/>
 			<button id="submitButton" type="button">submit</button>
 		</div>
-	 </div>
+		<div id="withdrawalInterface">
+			<h3>Withdrawing</h3>
+			<p id="amount"></p>
+			<h3>Thank you for using <br/> Enalyzer ATM</h3>
+		</div>
+	</div>
 	 <!-- Load JQuery -->
 	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 	<script src="js/frontend.js"></script>
  </body>
-
  </html>
