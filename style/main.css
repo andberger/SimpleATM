@@ -1,7 +1,5 @@
 body{
 	font-family: "Helvetica Neue",Helvetica,Arial,Sans-serif;
-	font-size: 40px/80px;
-	Styles: Normal/Bold;
 	background-color: #2bbed3;
 }
 
@@ -11,7 +9,65 @@ h1{
 	color: white;
 }
 
+h3{
+	text-align: center;
+	font-size: 25px;
+	color: white;
+}
+
+input{
+	width: 250px;
+	height: auto;
+	margin: 20px auto;
+	font-size: 40px;
+	color: white;
+	background: inherit;
+	text-align: center;
+	border:none;
+	outline: none;
+}
+
+button{
+	width: 250px;
+	height: 50px;
+    margin: 20px auto;
+	border-radius: 25px;
+	border: 1px solid white;
+	font-size: 25px;
+	color: white;
+	background-color:inherit;
+
+}
+
+button:focus{
+	outline: none;
+}
+
+.clear{
+	clear:both;
+}
+
 #centeredDiv{
 	margin: 0 auto;
-	width: 100px;
+	width: 100%;
+}
+
+#atmInterface{
+	width: 250px;
+	height: auto;
+    margin: 0 auto;
+}
+
+#numberpad li{
+	list-style-type: none;
+	float: left;
+	font-size: 25px;
+	color: white;
+	border-radius: 51%;
+	border: 1px solid white;
+	text-align: center;
+	line-height: 175%;
+	width: 45px;
+	height: 45px;
+	margin: 5px;
 }
