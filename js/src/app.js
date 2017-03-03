@@ -20,8 +20,8 @@ $("#submitButton").on("click", function(){
 });
 
 function updateAmount(num){
-	let maxLength = 6;
-	let minLength = 2;
+	const maxLength = 6;
+	const minLength = 2;
 	let currVal = $("#amountField").val();
 	if(Array.from("0123456789").indexOf(num) > -1){
 		if(currVal.length < maxLength){
