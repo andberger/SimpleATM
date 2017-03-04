@@ -47,6 +47,15 @@ button:focus{
 	clear:both;
 }
 
+.withdrawal{
+	width: 100%;
+}
+
+.withdrawal ul{
+	float: left;
+	display: inline;
+}
+
 #centeredDiv{
 	margin: 0 auto;
 	width: 100%;
