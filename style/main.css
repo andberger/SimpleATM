@@ -19,8 +19,9 @@ h3{
 }
 
 input{
+	width: 250px;
 	height: auto;
-	margin: 0 -2em;
+	margin: 0 auto;
 	font-size: 4em;
 	color: white;
 	background: inherit;
