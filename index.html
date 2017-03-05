@@ -6,12 +6,15 @@
     <title>Enalyzer ATM</title>
     <meta name="description" content="simple ATM simulator">
     <link rel="stylesheet" href="style/main.css">
+	<link rel="stylesheet" href="style/small.css">
+	<link rel="stylesheet" href="style/mobile.css">
+	<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5">
  </head>
 
  <body>
-	<div id="centeredDiv">
+	<div id="centered-div">
 		<h1>Enalyzer <br/> ATM</h1>
-		<div id="atmInterface">
+		<div id="atm-interface">
 			<h3>Select amount</h3>
 			<input id="amountField" type="text" name="amount" onblur="this.focus()" autofocus>
 			<ul id="numberpad">
@@ -28,10 +31,10 @@
 				<li>0</li>
 			</ul>
 			<div class="clear"></div>
-			<button id="submitButton" type="button">submit</button>
+			<button id="submit-button" type="button">submit</button>
 		</div>
-		<div id="withdrawalInterface">
-			<button id="backButton">&larr;</button>
+		<div id="withdrawal-interface">
+			<button id="back-button">&larr;</button>
 			<h3>Withdrawing</h3>
 			<p id="amount"></p>
 			<div class="withdrawal">

@@ -1,25 +1,27 @@
-body{
+html, body{
 	font-family: "Helvetica Neue",Helvetica,Arial,Sans-serif;
 	background-color: #2bbed3;
+	font-size: 10px;
+	width: 100%;
+	height: 100%;
 }
 
 h1{
 	text-align: center;
-	font-size: 80px;
+	font-size: 8em;
 	color: white;
 }
 
 h3{
 	text-align: center;
-	font-size: 25px;
+	font-size: 2.5em;
 	color: white;
 }
 
 input{
-	width: 250px;
 	height: auto;
-	margin: 20px auto;
-	font-size: 40px;
+	margin: 0 -2em;
+	font-size: 4em;
 	color: white;
 	background: inherit;
 	text-align: center;
@@ -32,16 +34,16 @@ input{
 }
 
 .withdrawal{
-	width: 810px;
+	width: 90em;
 	height: auto;
-	margin: 0 -120%;
+	margin: 0 -125%;
 }
 
 .withdrawal ul{
-	width: 230px;
+	width: 9.5em;
 	float: left;
 	list-style-type: none;
-	font-size: 25px;
+	font-size: 2.5em;
 	color: white;
 }
 
@@ -70,8 +72,8 @@ input{
 	width: 55px;
 }
 
-#submitButton{
-	width: 250px;
+#submit-button{
+	width: 25rem;
 	height: 50px;
     margin: 20px auto;
 	border-radius: 25px;
@@ -82,11 +84,11 @@ input{
 
 }
 
-#submitButton:focus{
+#submit-button:focus{
 	outline: none;
 }
 
-#backButton{
+#back-button{
 	float: left;
 	font-size: 25px;
 	color: white;
@@ -100,13 +102,13 @@ input{
 	background-color: inherit;
 }
 
-#centeredDiv{
+#centered-div{
 	margin: 0 auto;
 	width: 100%;
 }
 
-#atmInterface{
-	width: 250px;
+#atm-interface{
+	width: 25rem;
 	height: auto;
     margin: 0 auto;
 }
@@ -125,15 +127,15 @@ input{
 	margin: 5px;
 }
 
-#withdrawalInterface{
+#withdrawal-interface{
 	display: none;
-	width: 250px;
+	width: 25em;
 	height: auto;
     margin: 0 auto;
 }
 
 #amount{
 	text-align: center;
-	font-size: 40px;
+	font-size: 4em;
 	color: white;
 }
