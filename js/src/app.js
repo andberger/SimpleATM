@@ -1,9 +1,9 @@
 $(document).ready(function(){
 	$("#amountField").val("\u00A3 ");
-	buttonAbler(false);
+	enableSubmit(false);
 });
 $("#amountField").on("keydown keypress keyup mousedown mouseup", false);
-$("#numberpad").on("click", "li", function(event){
+$("#numberpad").on("click tap", "li", function(event){
 	let pushedButton = event.target;
 	let buttonClick = (btn, btnBackground, btnNumber) => {
 		btn.style.background = btnBackground;
@@ -17,12 +17,21 @@ $("#numberpad").on("click", "li", function(event){
 $("#submitButton").on("click", function(){
 	let amount = getAmount();
 	$("#amount").text("\u00A3 " + amount);
-	calculateAmount(amount);
+	$("#amountField").val("\u00A3 ");
+	enableSubmit(false);
+	$(".withdrawal ul").empty();
+	$("#atmInterface").hide();
+	$("#withdrawalInterface").show();
+	calculateDenominations(amount);
+});
+$("#backButton").on("click", function(){
+	$("#atmInterface").show();
+	$("#withdrawalInterface").hide();
 });
 
 const money = {
-	Notes: [1000,500,200,100,50],
-	Coins: [
+	notes: [1000,500,200,100,50],
+	coins: [
 		{val: 20, diameter: 40},
 		{val: 10, diameter: 20},
 		{val: 5, diameter: 50},
@@ -31,13 +40,13 @@ const money = {
 	]
 };
 
-function calculateAmount(totalAmount){
+function calculateDenominations(totalAmount){
 
 	let amount = totalAmount;
 	let notes = [];
 	let coins = [];
 
-	for (let note of money.Notes){
+	for (let note of money.notes){
 		while(amount >= note){
 			if(amount >= note){
 				notes.push(note);
@@ -46,7 +55,7 @@ function calculateAmount(totalAmount){
 		}
 	}
 
-	for (let coin of money.Coins){
+	for (let coin of money.coins){
 		while(amount >= coin.val){
 			if(amount >= coin.val){
 				coins.push(coin.val);
@@ -55,26 +64,28 @@ function calculateAmount(totalAmount){
 		}
 	}
 
-	let moneyBuilder = [...notes, ... coins];
-
-	displayMoney(moneyBuilder);
-	console.log(moneyBuilder);
-	console.log(moneyBuilder.reduce((acc, val) => acc + val, 0));
+	let denominations = [...notes, ...coins];
+	displayWithdrawal(denominations);
 }
 
-function displayMoney(moneyToPayOut){
-	let minNote = Math.min(...money.Notes);
+function displayWithdrawal(denominations){
+	let minNote = Math.min(...money.notes);
+	let countMoney = {};
+	let moneyToPayOut = Array.from(new Set(denominations));
+
+	denominations.forEach( x => {countMoney[x] = (countMoney[x] || 0) + 1;} );
+
 	for (let m of moneyToPayOut) {
 		if(m >= minNote){
-			$("<li></li>").text(m).appendTo("#notes");
+			$("<li></li>").html("<span></span>" + countMoney[m] + " x " + m).appendTo("#notes");
 		}
 		else if (m < minNote) {
-			let diameter = money.Coins.find(x => x.val == m).diameter;
+			let diameter = money.coins.find(x => x.val == m).diameter;
 			if(diameter > 20){
-				$("<li></li>").text(m).appendTo("#bigCoins");
+				$("<li></li>").html("<span></span>" + countMoney[m] + " x " + m).appendTo("#bigCoins");
 			}
 			else{
-				$("<li></li>").text(m).appendTo("#smallCoins");
+				$("<li></li>").html("<span></span>" + countMoney[m] + " x " + m).appendTo("#smallCoins");
 			}
 		}
 	}
@@ -88,7 +99,7 @@ function updateAmount(num){
 		if(currVal.length < maxLength){
 			if(currVal.length != minLength || num != "0"){
 				$("#amountField").val(currVal + num);
-				buttonAbler(true);
+				enableSubmit(true);
 			}
 		}
 	}
@@ -97,13 +108,13 @@ function updateAmount(num){
 			$("#amountField").val(currVal.slice(0, -1));
 		}
 		if(currVal.length - 1  == minLength){
-			buttonAbler(false);
+			enableSubmit(false);
 		}
 	}
 }
 
-function buttonAbler(enableOrNo){
-	if(enableOrNo){
+function enableSubmit(enable){
+	if(enable){
 		$("#submitButton").prop("disabled", false);
 		$("#submitButton").css("opacity", "1.0");
 	}

@@ -27,7 +27,50 @@ input{
 	outline: none;
 }
 
-button{
+.clear{
+	clear:both;
+}
+
+.withdrawal{
+	width: 810px;
+	height: auto;
+	margin: 0 -120%;
+}
+
+.withdrawal ul{
+	width: 230px;
+	float: left;
+	list-style-type: none;
+	font-size: 25px;
+	color: white;
+}
+
+.withdrawal li{
+	border: 1px solid white;
+	padding: 15px 5px 15px 55px;
+	margin: 0 -15px;
+}
+
+.withdrawal li span {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	font-size: 12px;
+	line-height: 20px;
+	border-radius: 60px;
+	text-align: center;
+	background: white;
+	margin-right: 50px;
+	margin-left: -10px;
+}
+
+.withdrawal #notes li span {
+	border: 1px solid white;
+	border-radius: 0px;
+	width: 55px;
+}
+
+#submitButton{
 	width: 250px;
 	height: 50px;
     margin: 20px auto;
@@ -39,21 +82,22 @@ button{
 
 }
 
-button:focus{
+#submitButton:focus{
 	outline: none;
 }
 
-.clear{
-	clear:both;
-}
-
-.withdrawal{
-	width: 100%;
-}
-
-.withdrawal ul{
+#backButton{
 	float: left;
-	display: inline;
+	font-size: 25px;
+	color: white;
+	border-radius: 51%;
+	border: 1px solid white;
+	text-align: center;
+	line-height: 155%;
+	width: 45px;
+	height: 45px;
+	margin: 0px -100%;
+	background-color: inherit;
 }
 
 #centeredDiv{
@@ -82,6 +126,7 @@ button:focus{
 }
 
 #withdrawalInterface{
+	display: none;
 	width: 250px;
 	height: auto;
     margin: 0 auto;
