@@ -1,5 +1,7 @@
 
-$(document).ready(function(){
+$(document).ready(initializeApplication());
+
+function initializeApplication(){
 	$("#amountField").val("\u00A3 ");
 	enableSubmit(false);
 	$("#amountField").on("keydown keypress keyup mousedown mouseup", false);
@@ -7,7 +9,7 @@ $(document).ready(function(){
 	numberpadClick();
 	submitButtonClick();
 	backButtonClick();
-});
+}
 
 const money = {
 	notes: [1000,500,200,100,50],
