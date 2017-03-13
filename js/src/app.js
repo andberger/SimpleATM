@@ -1,15 +1,6 @@
-
-$(document).ready(initializeApplication());
-
-function initializeApplication(){
-	$("#amountField").val("\u00A3 ");
-	enableSubmit(false);
-	$("#amountField").on("keydown keypress keyup mousedown mouseup", false);
-
-	numberpadClick();
-	submitButtonClick();
-	backButtonClick();
-}
+const BACKGROUND_BLUE_COLOR = "#2bbed3";
+const TEXT_COLOR = "white";
+const POUND_SYMBOL = "\u00A3 ";
 
 const money = {
 	notes: [1000,500,200,100,50],
@@ -22,39 +13,60 @@ const money = {
 	]
 };
 
-function numberpadClick(){
-	$("#numberpad").on("click tap", "li", function(event){
-		let pushedButton = event.target;
-		let buttonClick = (btn, btnBackground, btnNumber) => {
-			btn.style.background = btnBackground;
-			btn.style.color = btnNumber;
-		};
-		buttonClick(pushedButton, "white", "#2bbed3");
-		setTimeout(() => buttonClick(pushedButton, "#2bbed3", "white"), 100);
+$(document).ready(initializeApplication());
 
-		updateAmount(pushedButton.innerText);
-	});
+function initializeApplication(){
+	setUpAmountField();
+	setUpEventHandlers();
 }
 
-function submitButtonClick(){
-	$("#submit-button").on("click", function(){
-		let amount = getAmount();
-		$("#amount").text("\u00A3 " + amount);
-		$("#amountField").val("\u00A3 ");
-		enableSubmit(false);
-		$(".withdrawal ul").empty();
-		$("#atm-interface").hide();
-		$("#withdrawal-interface").show();
-		let denominations = calculateDenominations(amount);
-		displayWithdrawal(denominations);
-	});
+function setUpAmountField(){
+	$("#amountField").val(POUND_SYMBOL);
+	enableSubmit(false);
+	$("#amountField").on("keydown keypress keyup mousedown mouseup", false);
 }
 
-function backButtonClick(){
-	$("#back-button").on("click", function(){
-		$("#atm-interface").show();
-		$("#withdrawal-interface").hide();
-	});
+function setUpEventHandlers(){
+	$("#numberpad").on("click tap", "li", onNumberPadClick);
+	$("#submit-button").on("click", onSubmitButtonClick);
+	$("#back-button").on("click", onBackButtonClick);
+}
+
+
+function onNumberPadClick(){
+	const pushedButton = event.target;
+
+	highlightButton(pushedButton);
+	setTimeout(() => unhighlightButton(pushedButton), 100);
+
+	updateAmount(pushedButton.innerText);
+}
+
+function highlightButton(button){
+	button.style.background = TEXT_COLOR;
+	button.style.color = BACKGROUND_BLUE_COLOR;
+}
+
+function unhighlightButton(button){
+	button.style.background = BACKGROUND_BLUE_COLOR;
+	button.style.color = TEXT_COLOR;
+}
+
+function onSubmitButtonClick(){
+	const amount = getAmount();
+	$("#amount").text(POUND_SYMBOL + amount);
+	$("#amountField").val(POUND_SYMBOL);
+	enableSubmit(false);
+	$(".withdrawal ul").empty();
+	$("#atm-interface").hide();
+	$("#withdrawal-interface").show();
+	let denominations = calculateDenominations(amount);
+	displayWithdrawal(denominations);
+}
+
+function onBackButtonClick(){
+	$("#atm-interface").show();
+	$("#withdrawal-interface").hide();
 }
 
 function updateAmount(num){
@@ -92,6 +104,7 @@ function enableSubmit(enable){
 
 function getAmount(){
 	let amount = $("#amountField").val();
+	//remove the pound signal, hence the slice
 	return Number(amount.slice(2));
 }
 
@@ -101,7 +114,7 @@ function calculateDenominations(totalAmount){
 	let notes = [];
 	let coins = [];
 
-	for (let note of money.notes){
+	for (const note of money.notes){
 		while(amount >= note){
 			if(amount >= note){
 				notes.push(note);
@@ -110,7 +123,7 @@ function calculateDenominations(totalAmount){
 		}
 	}
 
-	for (let coin of money.coins){
+	for (const coin of money.coins){
 		while(amount >= coin.val){
 			if(amount >= coin.val){
 				coins.push(coin.val);
@@ -124,18 +137,19 @@ function calculateDenominations(totalAmount){
 }
 
 function displayWithdrawal(denominations){
-	let minNote = Math.min(...money.notes);
+	const minNote = Math.min(...money.notes);
 	let countMoney = {};
 	let moneyToPayOut = Array.from(new Set(denominations));
 
+	//Count the number of occurrences for each note and each coin.
 	denominations.forEach( x => {countMoney[x] = (countMoney[x] || 0) + 1;} );
 
-	for (let m of moneyToPayOut) {
+	for (const m of moneyToPayOut) {
 		if(m >= minNote){
 			$("<li></li>").html("<span></span>" + countMoney[m] + " x " + m).appendTo("#notes");
 		}
 		else if (m < minNote) {
-			let diameter = money.coins.find(x => x.val == m).diameter;
+			const diameter = money.coins.find(x => x.val == m).diameter;
 			if(diameter > 20){
 				$("<li></li>").html("<span></span>" + countMoney[m] + " x " + m).appendTo("#bigCoins");
 			}
