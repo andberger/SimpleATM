@@ -33,7 +33,7 @@ function setUpEventHandlers(){
 }
 
 
-function onNumberPadClick(){
+function onNumberPadClick(event){
 	const pushedButton = event.target;
 
 	highlightButton(pushedButton);
